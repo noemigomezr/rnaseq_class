@@ -1,0 +1,142 @@
+---
+title: "Análisis de expresión diferencial - clase"
+author: "Noemi Gomez"
+date: "2026-09-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Librerías
+```{r library}
+# install.packages("BiocManager")
+
+# install.packages("tidyverse")
+# install.packages("ggplot2")
+# BiocManager::install("DESeq2")
+# BiocManager::install("clusterProfiler")
+
+library(tidyverse)
+library(ggplot2)
+library(DESeq2)
+library(clusterProfiler)
+library(msigdbr)
+```
+
+# Cargar datos
+```{r data_load}
+rna <- read.table(file="../input/coad_rna.tsv", sep="\t", header=TRUE, check.names = FALSE, row.names = 1)
+metadata <- read.table(file="../input/coad_metadata.tsv", sep="\t", header = TRUE)
+
+head(metadata)
+dim(rna)
+```
+
+# Extraer el dato a comparar
+```{r generate-coldata}
+# El modelo DESeq2 necesita una colData que tenga en las filas las muestras, y la columna con el valor del diseño
+
+coldata <- metadata %>% select(PATIENT_ID, wholeGenomeDuplication) %>% 
+  column_to_rownames(var = "PATIENT_ID") %>%
+  mutate(wholeGenomeDuplication = as.factor(wholeGenomeDuplication))
+
+table(coldata)
+```
+
+```{r filter-matrix}
+# eliminar genes sin expresion
+table(rowSums(rna) > 0) # TRUE genes con expresion, FALSE genes donde en todas las muestras son 0
+rna <- rna[rowSums(rna) > 0, ]
+dim(rna)
+```
+
+# Correr análisis de expresión
+```{r deseq-matrix}
+dds <- DESeqDataSetFromMatrix(countData = rna,
+                              colData = coldata,
+                              design = ~wholeGenomeDuplication)
+
+dds <- DESeq(dds)
+resultsNames(dds)
+```
+
+```{r observar-resultados}
+res <- results(dds, name = "wholeGenomeDuplication_true_vs_false") %>% as.data.frame()
+summary(res)
+```
+
+```{r deg-genes}
+# log2FC > 0 - enriquecido en true, < 0 enriquecido en false
+# Un log2FC de 1 indica un cambio de dos veces. Es decir, si es 1 entonces en esa condicion esta expresado dos veces mas.
+true_enriched <- res %>% filter(log2FoldChange > 1, padj < 0.1)
+false_enriched <- res %>% filter(log2FoldChange < -1, padj < 0.1)
+
+cat("Hay", nrow(true_enriched), "genes sobreexpresados en duplicacion de genoma completo, versus", nrow(false_enriched), "subexpresados.")
+```
+
+# Volcanoplot
+```{r volcano}
+# Definir colores
+res <- res %>% 
+  mutate(gene = rownames(res),
+         significant = ifelse(gene %in% rownames(true_enriched), "WGD",
+                              ifelse(gene %in% rownames(false_enriched), 
+                                     "noWGD", 
+                                     "not significant")))
+
+# generar volcano
+ggplot(res, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("WGD" = "red",
+                                "noWGD" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic()
+```
+```{r functional enrich}
+# Definir una base de datos. Por ejemplo = GO procesos biológicos
+go_bp <- msigdbr(species = "Homo sapiens",
+                 collection = "C5", 
+                 subcollection = "GO:BP")
+
+# El universo de genes a estudiar debe ser los genes utilizados en la prueba
+universo <- res$gene
+
+# Se establece una tabla de asociacion proceso-gen
+term2gene <- unique(as.data.frame(go_bp[, c("gs_name", "ensembl_gene")]))
+```
+
+```{r compareCluster}
+# lista de genes con grupo
+genes <- list("WGD" = res$gene[res$significant == "WGD"],
+              "noWGD" = res$gene[res$significant == "noWGD"])
+
+enrich <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.1,
+                         minGSSize = 3)
+```
+```{r visualizar, fig.width=10, fig.height=10}
+dotplot(enrich, showCategory = 10, 
+        color = "p.adjust")
+```
+# Alternativa: un enriquecimiento por categoria
+```{r per-gene-set}
+wgd_enrich <- enricher(gene = genes$WGD, TERM2GENE = term2gene, 
+                       universe = universo, pAdjustMethod = "BH",
+                       pvalueCutoff = 0.1, minGSSize = 3) 
+dotplot(wgd_enrich, showCategory = 10, 
+        color = "p.adjust")
+
+nowgd_enrich <- enricher(gene = genes$noWGD, TERM2GENE = term2gene, 
+                       universe = universo, pAdjustMethod = "BH",
+                       pvalueCutoff = 0.1, minGSSize = 3)
+dotplot(nowgd_enrich, showCategory = 10, 
+        color = "p.adjust")
+```
+
