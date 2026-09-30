@@ -1,0 +1,301 @@
+PATIENT_ID	SAMPLE_ID	SUBTYPE	AGE	SEX	OS_STATUS	COUNTRY_OF_RESIDENCE	SITE_OF_BIOPSY	purity	ploidy	wholeGenomeDuplication	CMS	metastasis
+TCGA-A6-5667	TCGA-A6-5667-01	CIN	40	Female	0:LIVING	NA	Sigmoid colon	0.69	3.2	true	CMS2	false
+TCGA-AY-4070	TCGA-AY-4070-01	CIN	50	Female	1:DECEASED	NA	Cecum	0.31	4.39	true	no_label	false
+TCGA-CM-6168	TCGA-CM-6168-01	GS	84	Female	0:LIVING	United States	Ascending colon	0.35	2.17	false	CMS4	false
+TCGA-CA-6716	TCGA-CA-6716-01	CIN	65	Male	0:LIVING	Vietnam	Ascending colon	0.73	3.74	true	CMS2	false
+TCGA-F4-6569	TCGA-F4-6569-01	CIN	60	Male	0:LIVING	Russia	Transverse colon	0.4	2.16	false	CMS4	false
+TCGA-A6-A56B	TCGA-A6-A56B-01	CIN	57	Male	1:DECEASED	United States	Sigmoid colon	0.72	3.21	true	no_label	false
+TCGA-4N-A93T	TCGA-4N-A93T-01	CIN	67	Male	0:LIVING	United States	Ascending colon	0.85	1.84	false	no_label	false
+TCGA-CM-6166	TCGA-CM-6166-01	CIN	48	Female	0:LIVING	United States	Ascending colon	0.73	2.27	false	CMS2	false
+TCGA-DM-A28F	TCGA-DM-A28F-01	CIN	73	Male	1:DECEASED	Israel	Sigmoid colon	0.7	2.43	true	CMS2	false
+TCGA-AA-A00E	TCGA-AA-A00E-01	NA	65	Male	0:LIVING	Germany	Ascending colon	0.54	2.01	false	CMS1	false
+TCGA-DM-A1D0	TCGA-DM-A1D0-01	CIN	79	Female	0:LIVING	NA	Sigmoid colon	0.85	2.03	false	CMS2	false
+TCGA-A6-6651	TCGA-A6-6651-01	CIN	55	Female	0:LIVING	United States	Transverse colon	0.35	2.83	true	CMS4	false
+TCGA-AA-3869	TCGA-AA-3869-01	NA	76	Male	1:DECEASED	Germany	Cecum	0.7	3.35	true	CMS2	true
+TCGA-G4-6295	TCGA-G4-6295-01	CIN	70	Female	0:LIVING	United States	Cecum	0.69	2.79	true	CMS2	false
+TCGA-DM-A28M	TCGA-DM-A28M-01	CIN	63	Male	0:LIVING	Israel	Descending colon	0.76	3.39	true	CMS3	false
+TCGA-A6-A567	TCGA-A6-A567-01	CIN	56	Male	1:DECEASED	United States	Sigmoid colon	0.73	1.82	false	CMS2	true
+TCGA-CK-5912	TCGA-CK-5912-01	CIN	81	Male	1:DECEASED	United States	Cecum	0.81	3.78	true	CMS2	false
+TCGA-CM-5349	TCGA-CM-5349-01	CIN	68	Female	0:LIVING	NA	Cecum	0.51	2.07	false	CMS4	false
+TCGA-AY-5543	TCGA-AY-5543-01	CIN	65	Female	0:LIVING	NA	Ascending colon	0.7	1.98	false	no_label	true
+TCGA-A6-2678	TCGA-A6-2678-01	NA	43	Female	0:LIVING	NA	Transverse colon	0.82	1.84	false	no_label	false
+TCGA-AZ-5403	TCGA-AZ-5403-01	CIN	43	Male	1:DECEASED	NA	Sigmoid colon	0.38	3.22	true	CMS4	false
+TCGA-AA-3814	TCGA-AA-3814-01	CIN	85	Female	0:LIVING	Germany	Ascending colon	0.6	2.59	false	CMS4	false
+TCGA-AA-3696	TCGA-AA-3696-01	GS	75	Female	1:DECEASED	Germany	Sigmoid colon	0.83	2.27	false	no_label	true
+TCGA-A6-5662	TCGA-A6-5662-01	CIN	46	Male	0:LIVING	NA	Splenic flexure of colon	0.95	2.06	false	no_label	true
+TCGA-AD-6899	TCGA-AD-6899-01	CIN	84	Male	1:DECEASED	United States	Cecum	0.62	2.47	true	CMS4	false
+TCGA-AA-A004	TCGA-AA-A004-01	NA	76	Male	0:LIVING	Germany	Sigmoid colon	0.55	2.16	false	no_label	false
+TCGA-A6-5666	TCGA-A6-5666-01	CIN	78	Male	0:LIVING	NA	Sigmoid colon	0.85	4.18	true	CMS2	false
+TCGA-AA-3956	TCGA-AA-3956-01	CIN	65	Male	0:LIVING	Germany	Cecum	0.35	4.26	true	CMS2	false
+TCGA-CM-5344	TCGA-CM-5344-01	CIN	39	Female	0:LIVING	NA	Sigmoid colon	0.54	2.74	true	CMS4	false
+TCGA-AA-3521	TCGA-AA-3521-01	NA	87	Male	0:LIVING	Germany	Sigmoid colon	0.7	3.63	true	CMS2	false
+TCGA-D5-5538	TCGA-D5-5538-01	CIN	60	Female	1:DECEASED	Poland	Cecum	0.69	1.98	false	CMS4	false
+TCGA-NH-A6GA	TCGA-NH-A6GA-01	CIN	58	Male	1:DECEASED	United States	Ascending colon	0.8	1.88	false	no_label	false
+TCGA-AA-A00K	TCGA-AA-A00K-01	NA	79	Male	0:LIVING	Germany	Sigmoid colon	0.67	2.12	false	CMS3	false
+TCGA-AA-A00Q	TCGA-AA-A00Q-01	NA	66	Female	0:LIVING	Germany	Sigmoid colon	0.57	3.62	true	CMS2	false
+TCGA-AY-A71X	TCGA-AY-A71X-01	GS	54	Female	0:LIVING	United States	Cecum	0.94	1.95	false	CMS3	false
+TCGA-AA-3489	TCGA-AA-3489-01	CIN	75	Male	1:DECEASED	Germany	Sigmoid colon	0.31	2.1	false	CMS4	false
+TCGA-AA-3494	TCGA-AA-3494-01	NA	55	Male	0:LIVING	Germany	Sigmoid colon	0.74	3.23	true	CMS2	true
+TCGA-A6-4105	TCGA-A6-4105-01	CIN	79	Male	1:DECEASED	NA	Ascending colon	0.55	2.86	true	no_label	false
+TCGA-AA-3542	TCGA-AA-3542-01	NA	69	Male	0:LIVING	Germany	Sigmoid colon	0.87	3.42	true	CMS2	false
+TCGA-F4-6855	TCGA-F4-6855-01	GS	70	Female	0:LIVING	Ukraine	Sigmoid colon	0.65	3	true	CMS4	false
+TCGA-F4-6806	TCGA-F4-6806-01	GS	59	Female	0:LIVING	Russia	Sigmoid colon	0.71	2.02	false	no_label	false
+TCGA-AD-6963	TCGA-AD-6963-01	CIN	58	Male	0:LIVING	United States	Ascending colon	0.35	3.33	true	CMS2	NA
+TCGA-AA-3841	TCGA-AA-3841-01	NA	66	Male	0:LIVING	Germany	Sigmoid colon	0.65	2.93	true	no_label	false
+TCGA-CK-4951	TCGA-CK-4951-01	MSI	79	Female	1:DECEASED	NA	Ascending colon	0.6	2	false	CMS1	false
+TCGA-D5-6534	TCGA-D5-6534-01	CIN	62	Female	0:LIVING	Poland	Ascending colon	0.33	2.11	false	CMS4	false
+TCGA-CM-6680	TCGA-CM-6680-01	CIN	78	Female	0:LIVING	United States	Cecum	0.75	1.96	false	no_label	false
+TCGA-DM-A28K	TCGA-DM-A28K-01	CIN	75	Male	0:LIVING	Israel	Hepatic flexure of colon	0.88	2.21	false	CMS3	false
+TCGA-F4-6805	TCGA-F4-6805-01	CIN	58	Female	0:LIVING	Russia	Descending colon	0.45	2.04	false	CMS4	false
+TCGA-F4-6703	TCGA-F4-6703-01	MSI	64	Male	0:LIVING	Ukraine	Ascending colon	0.17	2.04	false	CMS4	false
+TCGA-CK-5916	TCGA-CK-5916-01	MSI	71	Female	1:DECEASED	United States	Cecum	0.58	2	false	CMS1	false
+TCGA-CM-6171	TCGA-CM-6171-01	MSI	77	Female	0:LIVING	United States	Ascending colon	0.77	2.06	false	CMS1	false
+TCGA-G4-6298	TCGA-G4-6298-01	CIN	90	Male	1:DECEASED	United States	Cecum	0.6	1.98	false	no_label	false
+TCGA-CM-4746	TCGA-CM-4746-01	MSI	61	Male	0:LIVING	NA	Sigmoid colon	0.81	2.13	false	CMS3	false
+TCGA-D5-6532	TCGA-D5-6532-01	GS	61	Male	0:LIVING	Poland	Sigmoid colon	0.78	2.06	false	CMS2	false
+TCGA-AZ-6600	TCGA-AZ-6600-01	CIN	64	Male	1:DECEASED	United States	Hepatic flexure of colon	0.51	2.98	true	CMS4	true
+TCGA-A6-4107	TCGA-A6-4107-01	CIN	57	Female	0:LIVING	NA	Ascending colon	0.43	3.59	true	no_label	false
+TCGA-DM-A28A	TCGA-DM-A28A-01	CIN	78	Male	1:DECEASED	Israel	Cecum	0.87	1.93	false	no_label	false
+TCGA-G4-6628	TCGA-G4-6628-01	MSI	78	Male	0:LIVING	United States	Cecum	0.51	2.08	false	CMS1	false
+TCGA-AA-3989	TCGA-AA-3989-01	CIN	84	Male	1:DECEASED	Germany	Transverse colon	0.55	3.7	true	CMS2	true
+TCGA-AA-A00Z	TCGA-AA-A00Z-01	NA	70	Male	0:LIVING	Germany	Sigmoid colon	0.63	2.06	false	CMS2	false
+TCGA-A6-6654	TCGA-A6-6654-01	CIN	65	Female	0:LIVING	United States	Descending colon	0.32	2.7	true	CMS4	false
+TCGA-AA-3693	TCGA-AA-3693-01	CIN	77	Female	0:LIVING	Germany	Sigmoid colon	0.9	2.19	false	CMS2	true
+TCGA-DM-A0XD	TCGA-DM-A0XD-01	CIN	65	Male	1:DECEASED	NA	Colon, NOS	0.66	2.07	false	no_label	false
+TCGA-NH-A6GC	TCGA-NH-A6GC-01	CIN	66	Female	0:LIVING	United States	Descending colon	0.78	3.41	true	no_label	true
+TCGA-WS-AB45	TCGA-WS-AB45-01	MSI	52	Female	0:LIVING	United States	Cecum	0.24	2.2	false	CMS4	false
+TCGA-DM-A1DA	TCGA-DM-A1DA-01	CIN	71	Female	1:DECEASED	NA	Cecum	0.92	2.48	true	CMS3	false
+TCGA-A6-2681	TCGA-A6-2681-01	CIN	73	Female	0:LIVING	United States	Cecum	0.72	1.96	false	CMS4	false
+TCGA-AA-3530	TCGA-AA-3530-01	NA	80	Male	0:LIVING	Germany	Cecum	0.79	1.93	false	no_label	false
+TCGA-AA-3680	TCGA-AA-3680-01	CIN	67	Female	1:DECEASED	Germany	Cecum	0.63	3.99	true	CMS3	true
+TCGA-AA-3831	TCGA-AA-3831-01	GS	66	Male	0:LIVING	Germany	Sigmoid colon	0.61	2	false	CMS2	false
+TCGA-5M-AAT6	TCGA-5M-AAT6-01	MSI	40	Female	1:DECEASED	Brazil	Transverse colon	0.25	2.13	false	CMS1	true
+TCGA-A6-6653	TCGA-A6-6653-01	MSI	82	Male	0:LIVING	United States	Ascending colon	0.81	1.99	false	CMS1	false
+TCGA-AA-3667	TCGA-AA-3667-01	CIN	36	Female	0:LIVING	Germany	Sigmoid colon	0.84	2.23	false	CMS2	false
+TCGA-CK-6746	TCGA-CK-6746-01	MSI	84	Female	0:LIVING	United States	Cecum	0.85	2.05	false	CMS1	false
+TCGA-CM-6679	TCGA-CM-6679-01	CIN	58	Male	0:LIVING	United States	Sigmoid colon	0.39	5.02	true	CMS4	false
+TCGA-AA-3534	TCGA-AA-3534-01	NA	78	Female	0:LIVING	Germany	Ascending colon	0.78	2.44	true	CMS2	false
+TCGA-D5-6530	TCGA-D5-6530-01	MSI	53	Male	0:LIVING	Poland	Colon, NOS	0.73	1.99	false	no_label	false
+TCGA-DM-A285	TCGA-DM-A285-01	CIN	71	Female	1:DECEASED	Israel	Ascending colon	0.71	2.12	false	no_label	true
+TCGA-AA-3673	TCGA-AA-3673-01	CIN	53	Female	0:LIVING	Germany	Transverse colon	0.75	2.05	false	CMS2	false
+TCGA-AA-3675	TCGA-AA-3675-01	NA	84	Male	0:LIVING	Germany	Hepatic flexure of colon	0.77	2.09	false	CMS2	false
+TCGA-AA-3715	TCGA-AA-3715-01	MSI	77	Male	1:DECEASED	Germany	Ascending colon	0.48	2.17	false	CMS1	false
+TCGA-AA-3858	TCGA-AA-3858-01	CIN	67	Male	0:LIVING	Germany	Sigmoid colon	0.6	4.27	true	CMS2	false
+TCGA-AA-3544	TCGA-AA-3544-01	NA	68	Male	0:LIVING	Germany	Sigmoid colon	0.73	2.19	false	no_label	false
+TCGA-A6-2679	TCGA-A6-2679-01	NA	73	Female	0:LIVING	NA	Ascending colon	0.48	3.46	true	no_label	false
+TCGA-AA-3488	TCGA-AA-3488-01	NA	58	Male	1:DECEASED	Germany	Sigmoid colon	0.82	3.03	true	CMS2	true
+TCGA-AD-6888	TCGA-AD-6888-01	CIN	73	Male	1:DECEASED	United States	Hepatic flexure of colon	0.57	3.51	true	CMS2	false
+TCGA-G4-6293	TCGA-G4-6293-01	GS	49	Female	0:LIVING	United States	Transverse colon	0.61	2.15	false	no_label	false
+TCGA-DM-A1DB	TCGA-DM-A1DB-01	CIN	68	Male	1:DECEASED	NA	Sigmoid colon	0.83	1.99	false	CMS2	false
+TCGA-AA-A01F	TCGA-AA-A01F-01	NA	72	Male	0:LIVING	Germany	Sigmoid colon	0.89	2.8	true	CMS2	false
+TCGA-D5-6928	TCGA-D5-6928-01	MSI	80	Male	0:LIVING	Poland	Ascending colon	0.31	2.17	false	CMS1	false
+TCGA-AA-3520	TCGA-AA-3520-01	NA	86	Female	0:LIVING	Germany	Ascending colon	0.69	1.94	false	no_label	false
+TCGA-5M-AATE	TCGA-5M-AATE-01	CIN	76	Male	0:LIVING	Brazil	Ascending colon	0.65	4.48	true	CMS2	false
+TCGA-CM-4743	TCGA-CM-4743-01	MSI	69	Male	0:LIVING	NA	Hepatic flexure of colon	0.42	2	false	CMS1	false
+TCGA-DM-A1D9	TCGA-DM-A1D9-01	CIN	67	Female	0:LIVING	NA	Cecum	0.81	1.77	false	CMS3	false
+TCGA-CM-6167	TCGA-CM-6167-01	CIN	57	Female	0:LIVING	United States	Cecum	0.27	2.51	true	CMS4	false
+TCGA-AA-3524	TCGA-AA-3524-01	NA	85	Male	0:LIVING	Germany	Sigmoid colon	0.8	2.14	false	CMS2	false
+TCGA-DM-A28C	TCGA-DM-A28C-01	GS	74	Male	1:DECEASED	Israel	Sigmoid colon	0.8	2.07	false	CMS2	false
+TCGA-AY-A69D	TCGA-AY-A69D-01	CIN	55	Female	0:LIVING	United States	Transverse colon	0.63	3.73	true	CMS3	false
+TCGA-AA-A01C	TCGA-AA-A01C-01	NA	75	Male	0:LIVING	Germany	Ascending colon	0.6	3.01	true	no_label	false
+TCGA-AA-3511	TCGA-AA-3511-01	CIN	64	Male	0:LIVING	Germany	Sigmoid colon	0.52	3.75	true	no_label	false
+TCGA-AA-3495	TCGA-AA-3495-01	NA	79	Male	0:LIVING	Germany	Hepatic flexure of colon	0.57	2.25	false	CMS2	false
+TCGA-CM-6164	TCGA-CM-6164-01	CIN	46	Female	0:LIVING	United States	Sigmoid colon	0.43	3.51	true	CMS2	false
+TCGA-G4-6626	TCGA-G4-6626-01	CIN	90	Male	1:DECEASED	United States	Ascending colon	0.6	3.41	true	CMS2	false
+TCGA-D5-7000	TCGA-D5-7000-01	CIN	79	Female	0:LIVING	Poland	Cecum	0.67	2.22	false	CMS1	false
+TCGA-AA-3538	TCGA-AA-3538-01	NA	54	Female	0:LIVING	Germany	Descending colon	0.72	2.09	false	CMS2	false
+TCGA-4T-AA8H	TCGA-4T-AA8H-01	CIN	42	Female	0:LIVING	United States	Descending colon	0.72	3.49	true	CMS3	false
+TCGA-G4-6586	TCGA-G4-6586-01	MSI	73	Female	0:LIVING	United States	Ascending colon	0.66	2.03	false	CMS1	false
+TCGA-AU-6004	TCGA-AU-6004-01	MSI	69	Female	0:LIVING	United States	Cecum	0.46	2.05	false	CMS1	false
+TCGA-AA-3519	TCGA-AA-3519-01	NA	63	Male	0:LIVING	Germany	Sigmoid colon	0.67	3.77	true	CMS2	false
+TCGA-AA-A01S	TCGA-AA-A01S-01	CIN	47	Female	0:LIVING	Germany	Sigmoid colon	0.9	2.1	false	CMS2	false
+TCGA-AA-3532	TCGA-AA-3532-01	NA	63	Male	0:LIVING	Germany	Sigmoid colon	0.38	3.5	true	no_label	false
+TCGA-DM-A280	TCGA-DM-A280-01	GS	70	Female	1:DECEASED	Israel	Ascending colon	0.39	2.08	false	no_label	false
+TCGA-G4-6302	TCGA-G4-6302-01	MSI	90	Female	1:DECEASED	United States	Cecum	0.21	2.05	false	CMS4	false
+TCGA-CM-6169	TCGA-CM-6169-01	CIN	67	Male	0:LIVING	United States	Cecum	0.68	2.11	false	CMS4	false
+TCGA-A6-2686	TCGA-A6-2686-01	MSI	81	Female	1:DECEASED	NA	Cecum	0.56	3.32	true	CMS1	false
+TCGA-D5-6538	TCGA-D5-6538-01	CIN	79	Female	0:LIVING	Poland	Hepatic flexure of colon	0.92	3.64	true	CMS2	false
+TCGA-AA-3982	TCGA-AA-3982-01	CIN	75	Male	0:LIVING	Germany	Sigmoid colon	0.54	1.74	false	CMS2	false
+TCGA-AA-3968	TCGA-AA-3968-01	CIN	55	Female	0:LIVING	Germany	Sigmoid colon	0.71	2.86	true	CMS2	false
+TCGA-A6-A565	TCGA-A6-A565-01	MSI	34	Female	1:DECEASED	United States	Transverse colon	0.19	1.99	false	no_label	false
+TCGA-CM-4752	TCGA-CM-4752-01	CIN	58	Male	0:LIVING	NA	Ascending colon	0.38	3.53	true	no_label	false
+TCGA-AM-5820	TCGA-AM-5820-01	CIN	59	Female	0:LIVING	Russia	Sigmoid colon	0.77	1.93	false	no_label	true
+TCGA-AA-3492	TCGA-AA-3492-01	MSI	90	Female	1:DECEASED	Germany	Ascending colon	0.81	2	false	CMS1	false
+TCGA-AA-A02R	TCGA-AA-A02R-01	NA	84	Female	1:DECEASED	Germany	Cecum	0.66	2.05	false	CMS1	false
+TCGA-G4-6297	TCGA-G4-6297-01	CIN	55	Female	0:LIVING	United States	Cecum	0.48	2.91	true	CMS4	true
+TCGA-AA-3684	TCGA-AA-3684-01	GS	65	Female	0:LIVING	Germany	Cecum	0.3	2.36	false	CMS4	true
+TCGA-AY-6197	TCGA-AY-6197-01	MSI	60	Male	0:LIVING	United States	Cecum	0.8	2.08	false	no_label	false
+TCGA-AZ-4308	TCGA-AZ-4308-01	CIN	47	Female	0:LIVING	NA	Sigmoid colon	0.69	2.05	false	no_label	false
+TCGA-CM-6677	TCGA-CM-6677-01	CIN	75	Female	0:LIVING	United States	Hepatic flexure of colon	0.49	3.87	true	no_label	false
+TCGA-AA-3549	TCGA-AA-3549-01	NA	69	Male	0:LIVING	Germany	Cecum	0.75	1.98	false	no_label	false
+TCGA-AA-3553	TCGA-AA-3553-01	NA	61	Female	0:LIVING	Germany	Sigmoid colon	0.58	3.39	true	CMS2	false
+TCGA-A6-6648	TCGA-A6-6648-01	CIN	56	Male	0:LIVING	United States	Colon, NOS	0.46	3.18	true	CMS3	true
+TCGA-AA-3833	TCGA-AA-3833-01	MSI	63	Female	0:LIVING	Germany	Ascending colon	0.4	1.98	false	CMS1	false
+TCGA-CM-5348	TCGA-CM-5348-01	CIN	72	Male	0:LIVING	NA	Cecum	0.57	2.5	true	CMS4	false
+TCGA-AA-A00J	TCGA-AA-A00J-01	NA	80	Male	0:LIVING	Germany	Ascending colon	0.82	2.03	false	CMS1	false
+TCGA-DM-A1HA	TCGA-DM-A1HA-01	GS	82	Male	0:LIVING	Israel	Ascending colon	0.93	1.95	false	no_label	false
+TCGA-DM-A28G	TCGA-DM-A28G-01	GS	75	Male	1:DECEASED	Israel	Ascending colon	0.79	2.02	false	CMS3	false
+TCGA-G4-6303	TCGA-G4-6303-01	CIN	54	Female	1:DECEASED	United States	Sigmoid colon	0.68	3.33	true	no_label	true
+TCGA-F4-6704	TCGA-F4-6704-01	CIN	60	Male	0:LIVING	United States	Sigmoid colon	0.5	3.63	true	CMS4	false
+TCGA-D5-6898	TCGA-D5-6898-01	CIN	51	Female	0:LIVING	Poland	Sigmoid colon	0.58	3.28	true	CMS4	false
+TCGA-A6-6649	TCGA-A6-6649-01	CIN	66	Male	0:LIVING	United States	Colon, NOS	0.43	3.28	true	CMS1	false
+TCGA-NH-A50U	TCGA-NH-A50U-01	CIN	42	Male	1:DECEASED	United States	Cecum	0.83	2.77	true	no_label	true
+TCGA-AD-A5EJ	TCGA-AD-A5EJ-01	MSI	74	Female	0:LIVING	United States	Cecum	0.68	1.99	false	CMS1	false
+TCGA-AZ-4614	TCGA-AZ-4614-01	CIN	71	Female	1:DECEASED	NA	Colon, NOS	0.86	1.96	false	no_label	true
+TCGA-AA-3526	TCGA-AA-3526-01	NA	57	Male	0:LIVING	Germany	Sigmoid colon	0.74	2.01	false	CMS2	false
+TCGA-AA-3955	TCGA-AA-3955-01	NA	38	Male	0:LIVING	Germany	Descending colon	0.76	3.22	true	CMS2	false
+TCGA-QG-A5YV	TCGA-QG-A5YV-01	CIN	64	Female	0:LIVING	United States	Sigmoid colon	0.59	3.81	true	CMS2	false
+TCGA-T9-A92H	TCGA-T9-A92H-01	CIN	82	Male	0:LIVING	United States	Sigmoid colon	0.68	3.67	true	CMS2	false
+TCGA-A6-5660	TCGA-A6-5660-01	CIN	73	Male	0:LIVING	NA	Cecum	0.88	3.15	true	CMS2	false
+TCGA-AA-3713	TCGA-AA-3713-01	MSI	68	Male	0:LIVING	Germany	Ascending colon	0.56	2.05	false	no_label	true
+TCGA-AA-3930	TCGA-AA-3930-01	NA	66	Male	1:DECEASED	Germany	Ascending colon	0.68	1.94	false	CMS1	true
+TCGA-AA-A00A	TCGA-AA-A00A-01	NA	80	Male	0:LIVING	Germany	Ascending colon	1	1.99	false	CMS1	false
+TCGA-A6-2671	TCGA-A6-2671-01	CIN	85	Male	1:DECEASED	NA	Sigmoid colon	0.73	3.57	true	CMS4	true
+TCGA-AA-3525	TCGA-AA-3525-01	NA	90	Male	0:LIVING	Germany	Hepatic flexure of colon	0.64	2	false	CMS3	false
+TCGA-AA-3867	TCGA-AA-3867-01	CIN	74	Male	0:LIVING	Germany	Sigmoid colon	0.59	3.6	true	CMS4	true
+TCGA-AA-3819	TCGA-AA-3819-01	CIN	41	Female	0:LIVING	Germany	Sigmoid colon	0.73	1.96	false	CMS2	false
+TCGA-DM-A28E	TCGA-DM-A28E-01	CIN	72	Female	0:LIVING	Israel	Sigmoid colon	0.92	2.09	false	CMS2	false
+TCGA-AA-3870	TCGA-AA-3870-01	NA	71	Female	0:LIVING	Germany	Ascending colon	0.61	2.04	false	CMS4	true
+TCGA-AA-3872	TCGA-AA-3872-01	NA	45	Male	0:LIVING	Germany	Sigmoid colon	0.59	2.86	true	CMS4	true
+TCGA-AA-3976	TCGA-AA-3976-01	CIN	70	Male	0:LIVING	Germany	Sigmoid colon	0.68	3.27	true	CMS2	false
+TCGA-AA-A01K	TCGA-AA-A01K-01	NA	74	Female	0:LIVING	Germany	Sigmoid colon	0.54	1.77	false	CMS4	false
+TCGA-AA-3842	TCGA-AA-3842-01	CIN	51	Male	0:LIVING	Germany	Sigmoid colon	0.74	2.93	true	no_label	false
+TCGA-A6-3807	TCGA-A6-3807-01	CIN	53	Female	0:LIVING	NA	Sigmoid colon	0.52	3.17	true	no_label	false
+TCGA-AA-3548	TCGA-AA-3548-01	NA	71	Female	0:LIVING	Germany	Cecum	0.62	3.81	true	CMS2	false
+TCGA-CM-4747	TCGA-CM-4747-01	CIN	47	Male	0:LIVING	NA	Cecum	0.59	3.16	true	no_label	true
+TCGA-AA-3543	TCGA-AA-3543-01	NA	84	Male	0:LIVING	Germany	Cecum	0.7	2.04	false	CMS1	false
+TCGA-F4-6856	TCGA-F4-6856-01	MSI	45	Male	0:LIVING	Russia	Cecum	0.6	1.98	false	CMS3	false
+TCGA-AZ-4684	TCGA-AZ-4684-01	NA	49	Male	0:LIVING	NA	Colon, NOS	0.47	3.65	true	no_label	true
+TCGA-D5-6926	TCGA-D5-6926-01	CIN	65	Male	0:LIVING	Poland	Sigmoid colon	0.5	3.93	true	CMS4	false
+TCGA-AA-3845	TCGA-AA-3845-01	MSI	86	Female	1:DECEASED	Germany	Ascending colon	0.59	2.09	false	CMS1	false
+TCGA-AA-3681	TCGA-AA-3681-01	CIN	77	Female	0:LIVING	Germany	Cecum	0.57	2.3	false	CMS3	false
+TCGA-A6-2676	TCGA-A6-2676-01	NA	75	Female	1:DECEASED	NA	Cecum	0.69	2.03	false	CMS1	false
+TCGA-A6-6138	TCGA-A6-6138-01	CIN	61	Male	0:LIVING	United States	Cecum	0.62	2.06	false	no_label	false
+TCGA-A6-5657	TCGA-A6-5657-01	CIN	65	Male	0:LIVING	NA	Colon, NOS	0.32	2.13	false	CMS4	false
+TCGA-AA-3529	TCGA-AA-3529-01	NA	78	Female	1:DECEASED	Germany	Sigmoid colon	0.6	2.23	false	CMS2	false
+TCGA-AA-A00L	TCGA-AA-A00L-01	NA	66	Male	0:LIVING	Germany	Transverse colon	0.79	2.11	false	CMS2	false
+TCGA-AA-3950	TCGA-AA-3950-01	GS	79	Female	0:LIVING	Germany	Ascending colon	0.39	2.12	false	CMS1	false
+TCGA-AA-3688	TCGA-AA-3688-01	CIN	80	Male	0:LIVING	Germany	Sigmoid colon	0.73	4.07	true	CMS2	true
+TCGA-DM-A28H	TCGA-DM-A28H-01	CIN	50	Male	0:LIVING	Israel	Cecum	0.74	2.06	false	CMS2	false
+TCGA-CM-6676	TCGA-CM-6676-01	CIN	82	Male	0:LIVING	United States	Sigmoid colon	0.55	3.18	true	CMS2	false
+TCGA-AZ-4681	TCGA-AZ-4681-01	CIN	79	Female	0:LIVING	NA	Ascending colon	0.88	2.02	false	CMS2	false
+TCGA-AA-3663	TCGA-AA-3663-01	MSI	42	Male	0:LIVING	Germany	Cecum	0.79	2.1	false	CMS3	false
+TCGA-DM-A1HB	TCGA-DM-A1HB-01	MSI	75	Male	0:LIVING	NA	Transverse colon	0.74	2	false	CMS1	false
+TCGA-AA-3666	TCGA-AA-3666-01	CIN	68	Male	1:DECEASED	Germany	Cecum	0.82	2.85	true	no_label	false
+TCGA-5M-AAT5	TCGA-5M-AAT5-01	CIN	NA	NA	NA	Brazil	Colon, NOS	0.83	1.8	false	CMS2	NA
+TCGA-AA-A01Q	TCGA-AA-A01Q-01	NA	48	Female	0:LIVING	Germany	Ascending colon	0.86	2.03	false	CMS3	false
+TCGA-AA-A00N	TCGA-AA-A00N-01	NA	75	Male	1:DECEASED	Germany	Cecum	0.43	2	false	CMS4	false
+TCGA-AA-A01I	TCGA-AA-A01I-01	NA	76	Male	0:LIVING	Germany	Sigmoid colon	0.72	2.25	false	no_label	false
+TCGA-D5-6932	TCGA-D5-6932-01	CIN	69	Male	0:LIVING	Poland	Transverse colon	0.62	3.62	true	no_label	false
+TCGA-DM-A1D6	TCGA-DM-A1D6-01	CIN	88	Male	1:DECEASED	NA	Splenic flexure of colon	0.9	1.9	false	CMS3	false
+TCGA-AZ-4315	TCGA-AZ-4315-01	POLE	61	Male	0:LIVING	NA	Cecum	0.66	2	false	no_label	false
+TCGA-AA-3821	TCGA-AA-3821-01	MSI	81	Female	0:LIVING	Germany	Hepatic flexure of colon	0.73	2	false	CMS1	false
+TCGA-NH-A6GB	TCGA-NH-A6GB-01	CIN	71	Female	0:LIVING	United States	Transverse colon	0.69	2.21	false	CMS2	false
+TCGA-AA-3506	TCGA-AA-3506-01	GS	77	Male	0:LIVING	Germany	Hepatic flexure of colon	0.64	2.19	false	no_label	false
+TCGA-G4-6323	TCGA-G4-6323-01	GS	50	Male	0:LIVING	United States	Cecum	0.6	2.04	false	CMS3	false
+TCGA-CM-6675	TCGA-CM-6675-01	CIN	35	Male	0:LIVING	United States	Cecum	0.93	1.84	false	CMS1	true
+TCGA-CM-5868	TCGA-CM-5868-01	CIN	59	Female	0:LIVING	NA	Sigmoid colon	0.69	1.85	false	CMS4	true
+TCGA-AA-A00O	TCGA-AA-A00O-01	NA	83	Female	0:LIVING	Germany	Sigmoid colon	0.61	1.96	false	CMS4	false
+TCGA-D5-5539	TCGA-D5-5539-01	CIN	60	Male	0:LIVING	Poland	Ascending colon	0.55	3.58	true	no_label	false
+TCGA-AZ-6599	TCGA-AZ-6599-01	GS	72	Male	1:DECEASED	United States	Cecum	0.85	1.99	false	CMS3	false
+TCGA-AA-3850	TCGA-AA-3850-01	GS	74	Male	1:DECEASED	Germany	Transverse colon	0.23	2.69	false	no_label	false
+TCGA-CM-6170	TCGA-CM-6170-01	CIN	73	Female	0:LIVING	United States	Descending colon	0.78	1.87	false	no_label	false
+TCGA-CK-5914	TCGA-CK-5914-01	CIN	81	Male	0:LIVING	United States	Sigmoid colon	0.77	3.47	true	CMS2	false
+TCGA-AA-3984	TCGA-AA-3984-01	POLE	61	Female	0:LIVING	Germany	Sigmoid colon	0.62	2.16	false	no_label	false
+TCGA-AA-A017	TCGA-AA-A017-01	NA	57	Female	0:LIVING	Germany	Sigmoid colon	0.58	2.09	false	CMS2	false
+TCGA-CA-5255	TCGA-CA-5255-01	CIN	45	Male	0:LIVING	NA	Ascending colon	0.27	3.18	true	CMS3	false
+TCGA-A6-6137	TCGA-A6-6137-01	CIN	55	Male	0:LIVING	United States	Hepatic flexure of colon	0.46	2.14	false	no_label	false
+TCGA-AA-3851	TCGA-AA-3851-01	CIN	74	Male	0:LIVING	Germany	Ascending colon	0.59	3.23	true	CMS3	false
+TCGA-A6-2680	TCGA-A6-2680-01	NA	72	Female	0:LIVING	NA	Hepatic flexure of colon	0.58	3.13	true	CMS2	false
+TCGA-AZ-4682	TCGA-AZ-4682-01	CIN	61	Male	1:DECEASED	NA	Sigmoid colon	0.78	2.27	false	CMS2	true
+TCGA-G4-6309	TCGA-G4-6309-01	MSI	40	Female	0:LIVING	United States	Sigmoid colon	0.81	2	false	no_label	false
+TCGA-AA-3949	TCGA-AA-3949-01	MSI	87	Female	0:LIVING	Germany	Ascending colon	0.29	4.07	true	CMS1	false
+TCGA-AA-3679	TCGA-AA-3679-01	CIN	59	Male	0:LIVING	Germany	Descending colon	0.78	2.49	false	CMS2	true
+TCGA-D5-6540	TCGA-D5-6540-01	MSI	66	Male	0:LIVING	Poland	Cecum	0.76	2.08	false	CMS1	false
+TCGA-CK-6748	TCGA-CK-6748-01	CIN	45	Female	0:LIVING	United States	Sigmoid colon	0.72	2.91	true	CMS4	true
+TCGA-AA-A02W	TCGA-AA-A02W-01	NA	73	Female	0:LIVING	Germany	Sigmoid colon	0.72	2.83	true	CMS2	false
+TCGA-CM-4744	TCGA-CM-4744-01	CIN	69	Male	0:LIVING	NA	Cecum	0.6	3.21	true	no_label	false
+TCGA-CK-4948	TCGA-CK-4948-01	CIN	45	Female	0:LIVING	NA	Sigmoid colon	0.51	3.45	true	CMS4	false
+TCGA-A6-A566	TCGA-A6-A566-01	GS	55	Female	1:DECEASED	United States	Descending colon	0.39	2.1	false	CMS4	false
+TCGA-DM-A282	TCGA-DM-A282-01	CIN	60	Female	0:LIVING	Israel	Hepatic flexure of colon	0.79	2	false	CMS2	false
+TCGA-AA-A01R	TCGA-AA-A01R-01	MSI	47	Male	0:LIVING	Germany	Ascending colon	0.63	2.09	false	CMS1	false
+TCGA-AA-3685	TCGA-AA-3685-01	CIN	69	Male	0:LIVING	Germany	Sigmoid colon	0.6	2.71	true	CMS2	false
+TCGA-AZ-6606	TCGA-AZ-6606-01	CIN	81	Male	1:DECEASED	United States	Cecum	0.8	2.32	false	no_label	true
+TCGA-AA-A010	TCGA-AA-A010-01	POLE	46	Female	0:LIVING	Germany	Transverse colon	0.77	2.01	false	no_label	false
+TCGA-AA-3855	TCGA-AA-3855-01	GS	72	Male	0:LIVING	Germany	Sigmoid colon	0.63	2.12	false	CMS2	false
+TCGA-G4-6322	TCGA-G4-6322-01	CIN	65	Male	0:LIVING	United States	Descending colon	0.88	1.9	false	CMS3	false
+TCGA-AA-A01T	TCGA-AA-A01T-01	CIN	63	Female	0:LIVING	Germany	Sigmoid colon	0.71	3.64	true	CMS3	false
+TCGA-AA-A00F	TCGA-AA-A00F-01	NA	66	Male	0:LIVING	Germany	Sigmoid colon	0.45	3.14	true	no_label	false
+TCGA-D5-6539	TCGA-D5-6539-01	CIN	45	Female	0:LIVING	Poland	Transverse colon	0.23	3.57	true	CMS3	NA
+TCGA-A6-2685	TCGA-A6-2685-01	CIN	48	Female	0:LIVING	NA	Sigmoid colon	0.36	2.17	false	CMS4	false
+TCGA-AU-3779	TCGA-AU-3779-01	CIN	80	Female	0:LIVING	NA	Rectosigmoid junction	0.62	2.62	true	no_label	false
+TCGA-AZ-6598	TCGA-AZ-6598-01	MSI	77	Female	1:DECEASED	United States	Colon, NOS	0.86	2.28	false	CMS1	false
+TCGA-G4-6306	TCGA-G4-6306-01	CIN	71	Male	0:LIVING	United States	Ascending colon	0.74	2.33	false	CMS2	false
+TCGA-AZ-4313	TCGA-AZ-4313-01	NA	51	Female	0:LIVING	NA	Descending colon	0.52	2.14	false	CMS3	false
+TCGA-AA-3973	TCGA-AA-3973-01	CIN	69	Male	0:LIVING	Germany	Sigmoid colon	0.92	2.04	false	CMS2	true
+TCGA-AA-3660	TCGA-AA-3660-01	CIN	51	Female	0:LIVING	Germany	Sigmoid colon	0.76	2.33	false	CMS2	false
+TCGA-D5-6931	TCGA-D5-6931-01	CIN	77	Male	0:LIVING	Poland	Transverse colon	0.48	2.08	false	CMS1	false
+TCGA-D5-6531	TCGA-D5-6531-01	CIN	75	Male	0:LIVING	Poland	Hepatic flexure of colon	0.62	5.06	true	no_label	false
+TCGA-AD-6895	TCGA-AD-6895-01	MSI	84	Male	0:LIVING	United States	Cecum	0.56	2	false	CMS1	false
+TCGA-AA-3875	TCGA-AA-3875-01	CIN	78	Female	0:LIVING	Germany	Ascending colon	0.35	3.93	true	no_label	false
+TCGA-CM-6674	TCGA-CM-6674-01	MSI	39	Male	0:LIVING	United States	Hepatic flexure of colon	0.5	2	false	CMS1	false
+TCGA-CA-5256	TCGA-CA-5256-01	CIN	54	Female	0:LIVING	NA	Hepatic flexure of colon	0.66	3.73	true	CMS2	false
+TCGA-A6-6140	TCGA-A6-6140-01	NA	62	Male	0:LIVING	United States	Descending colon	0.81	2.17	false	CMS2	false
+TCGA-A6-2683	TCGA-A6-2683-01	NA	57	Female	1:DECEASED	NA	Ascending colon	0.85	3.88	true	CMS3	true
+TCGA-AZ-4615	TCGA-AZ-4615-01	MSI	84	Male	0:LIVING	NA	Colon, NOS	0.65	2.04	false	CMS1	false
+TCGA-D5-5541	TCGA-D5-5541-01	CIN	63	Male	0:LIVING	Poland	Sigmoid colon	0.78	2.37	false	CMS4	false
+TCGA-AA-3560	TCGA-AA-3560-01	NA	72	Female	0:LIVING	Germany	Sigmoid colon	0.84	1.82	false	CMS3	false
+TCGA-RU-A8FL	TCGA-RU-A8FL-01	CIN	51	Male	0:LIVING	United States	Cecum	0.72	3.54	true	CMS2	false
+TCGA-AA-3979	TCGA-AA-3979-01	CIN	84	Male	0:LIVING	Germany	Sigmoid colon	0.92	1.99	false	CMS2	false
+TCGA-AA-3947	TCGA-AA-3947-01	MSI	60	Female	0:LIVING	Germany	Ascending colon	0.78	2	false	CMS1	false
+TCGA-CM-5862	TCGA-CM-5862-01	CIN	80	Male	1:DECEASED	NA	Ascending colon	0.86	2.76	true	CMS2	true
+TCGA-AA-3971	TCGA-AA-3971-01	CIN	58	Male	0:LIVING	Germany	Sigmoid colon	0.54	2.3	true	CMS2	false
+TCGA-CM-4748	TCGA-CM-4748-01	NA	53	Male	0:LIVING	NA	Transverse colon	0.63	1.99	false	no_label	false
+TCGA-AD-6889	TCGA-AD-6889-01	MSI	76	Male	1:DECEASED	United States	Ascending colon	0.88	2	false	no_label	false
+TCGA-AA-3710	TCGA-AA-3710-01	NA	80	Female	0:LIVING	Germany	Hepatic flexure of colon	0.43	2.05	false	CMS1	false
+TCGA-AA-A01G	TCGA-AA-A01G-01	NA	63	Male	0:LIVING	Germany	Cecum	0.52	4.44	true	no_label	false
+TCGA-AA-3952	TCGA-AA-3952-01	CIN	68	Male	1:DECEASED	Germany	Descending colon	0.74	1.84	false	no_label	false
+TCGA-AY-4071	TCGA-AY-4071-01	CIN	63	Female	1:DECEASED	NA	Colon, NOS	0.6	3.26	true	CMS2	false
+TCGA-AD-5900	TCGA-AD-5900-01	MSI	67	Male	0:LIVING	United States	Ascending colon	0.53	2.13	false	CMS1	false
+TCGA-D5-6930	TCGA-D5-6930-01	MSI	67	Male	0:LIVING	Poland	Ascending colon	0.44	2	false	CMS1	false
+TCGA-AA-3552	TCGA-AA-3552-01	NA	85	Male	1:DECEASED	Germany	Cecum	0.52	3.35	true	CMS2	false
+TCGA-AA-3975	TCGA-AA-3975-01	CIN	80	Male	0:LIVING	Germany	Sigmoid colon	0.79	2.18	false	CMS2	false
+TCGA-CK-6747	TCGA-CK-6747-01	GS	87	Female	0:LIVING	United States	Cecum	0.8	2	false	CMS3	false
+TCGA-NH-A8F8	TCGA-NH-A8F8-01	CIN	79	Male	1:DECEASED	United States	Ascending colon	0.7	1.89	false	CMS4	true
+TCGA-AA-A01Z	TCGA-AA-A01Z-01	CIN	68	Male	0:LIVING	Germany	Ascending colon	0.81	2.01	false	CMS2	false
+TCGA-CM-6161	TCGA-CM-6161-01	GS	36	Female	0:LIVING	United States	Sigmoid colon	0.66	2.46	true	CMS2	false
+TCGA-AD-A5EK	TCGA-AD-A5EK-01	CIN	51	Male	0:LIVING	United States	Ascending colon	0.84	2.54	true	CMS2	false
+TCGA-D5-6923	TCGA-D5-6923-01	NA	57	Male	0:LIVING	Poland	Sigmoid colon	0.64	2.18	false	CMS4	false
+TCGA-A6-6142	TCGA-A6-6142-01	CIN	56	Female	0:LIVING	United States	Sigmoid colon	0.45	3.6	true	CMS4	true
+TCGA-AA-3994	TCGA-AA-3994-01	CIN	69	Male	0:LIVING	Germany	Transverse colon	0.76	2.21	false	no_label	false
+TCGA-D5-6929	TCGA-D5-6929-01	CIN	49	Female	0:LIVING	Poland	Sigmoid colon	0.48	2.61	true	CMS4	true
+TCGA-D5-6922	TCGA-D5-6922-01	CIN	76	Male	0:LIVING	Poland	Sigmoid colon	0.6	3.21	true	CMS4	false
+TCGA-AA-3864	TCGA-AA-3864-01	MSI	71	Male	0:LIVING	Germany	Cecum	0.75	2	false	no_label	false
+TCGA-CM-5860	TCGA-CM-5860-01	CIN	44	Male	0:LIVING	NA	Ascending colon	0.56	3.61	true	CMS4	false
+TCGA-DM-A1D4	TCGA-DM-A1D4-01	CIN	80	Male	1:DECEASED	NA	Cecum	0.81	2.03	false	CMS3	false
+TCGA-F4-6459	TCGA-F4-6459-01	CIN	61	Female	1:DECEASED	Russia	Sigmoid colon	0.63	2.45	true	CMS4	false
+TCGA-DM-A0X9	TCGA-DM-A0X9-01	GS	71	Female	0:LIVING	NA	Colon, NOS	0.77	2.25	false	CMS3	false
+TCGA-AA-A01V	TCGA-AA-A01V-01	GS	59	Male	0:LIVING	Germany	Cecum	0.8	2	false	CMS3	false
+TCGA-F4-6570	TCGA-F4-6570-01	MSI	78	Female	1:DECEASED	Russia	Transverse colon	0.59	2.09	false	CMS1	false
+TCGA-5M-AAT4	TCGA-5M-AAT4-01	CIN	74	Male	1:DECEASED	Brazil	Ascending colon	0.68	3.04	true	CMS2	true
+TCGA-5M-AATA	TCGA-5M-AATA-01	CIN	NA	NA	NA	Brazil	Colon, NOS	0.43	3.94	true	CMS2	NA
+TCGA-AA-3866	TCGA-AA-3866-01	CIN	78	Female	0:LIVING	Germany	Cecum	0.5	3.82	true	CMS4	false
+TCGA-AA-3502	TCGA-AA-3502-01	GS	73	Male	0:LIVING	Germany	Transverse colon	0.81	2.13	false	CMS3	false
+TCGA-F4-6854	TCGA-F4-6854-01	CIN	77	Female	0:LIVING	Russia	Sigmoid colon	0.66	2.02	false	no_label	false
+TCGA-AZ-6607	TCGA-AZ-6607-01	NA	69	Male	1:DECEASED	United States	Sigmoid colon	0.52	3.57	true	CMS4	true
+TCGA-A6-6141	TCGA-A6-6141-01	NA	31	Male	0:LIVING	United States	Cecum	0.48	2	false	CMS3	false
+TCGA-QG-A5Z1	TCGA-QG-A5Z1-01	CIN	71	Male	1:DECEASED	United States	Sigmoid colon	0.8	2.07	false	CMS4	false
+TCGA-D5-5537	TCGA-D5-5537-01	CIN	83	Male	1:DECEASED	NA	Ascending colon	0.71	2.78	true	CMS2	false
+TCGA-AA-A00D	TCGA-AA-A00D-01	NA	70	Male	0:LIVING	Germany	Ascending colon	0.52	2.16	false	no_label	false
+TCGA-G4-6627	TCGA-G4-6627-01	GS	84	Male	0:LIVING	United States	Ascending colon	0.23	2.28	false	CMS4	false
+TCGA-AA-3846	TCGA-AA-3846-01	CIN	74	Female	0:LIVING	Germany	Sigmoid colon	0.6	3.28	true	CMS2	false
+TCGA-F4-6808	TCGA-F4-6808-01	CIN	54	Female	0:LIVING	Russia	Sigmoid colon	0.56	3.79	true	CMS2	false
+TCGA-AZ-4323	TCGA-AZ-4323-01	GS	37	Male	1:DECEASED	NA	Cecum	0.2	2.13	false	CMS4	true
+TCGA-AA-3877	TCGA-AA-3877-01	MSI	83	Female	0:LIVING	Germany	Transverse colon	0.55	2.06	false	CMS1	false
+TCGA-AD-6890	TCGA-AD-6890-01	CIN	65	Male	0:LIVING	United States	Ascending colon	0.61	3.01	true	CMS2	NA
+TCGA-AA-3522	TCGA-AA-3522-01	NA	67	Male	0:LIVING	Germany	Ascending colon	0.44	1.74	false	CMS3	false
+TCGA-CK-4950	TCGA-CK-4950-01	GS	68	Female	0:LIVING	NA	Cecum	0.44	2.23	false	CMS3	false
+TCGA-D5-6924	TCGA-D5-6924-01	CIN	68	Male	0:LIVING	Poland	Sigmoid colon	0.5	3.3	true	CMS4	false
+TCGA-QG-A5YW	TCGA-QG-A5YW-01	CIN	55	Female	0:LIVING	United States	Cecum	0.61	3.3	true	CMS3	false
+TCGA-CM-5341	TCGA-CM-5341-01	CIN	82	Female	0:LIVING	NA	Sigmoid colon	0.51	3.75	true	CMS4	false
+TCGA-AM-5821	TCGA-AM-5821-01	MSI	68	Female	0:LIVING	NA	Sigmoid colon	0.64	2.05	false	CMS1	false
