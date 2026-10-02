@@ -1,0 +1,451 @@
+---
+title: "Análisis de expresión diferencial - clase"
+author: "Noemi Gomez"
+date: "2026-09-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Librerías
+```{r library}
+# install.packages("BiocManager")
+
+# install.packages("tidyverse")
+# install.packages("ggplot2")
+# BiocManager::install("DESeq2")
+# BiocManager::install("clusterProfiler")
+# BiocManager::install("msigdbr")
+
+library(tidyverse)
+library(ggplot2)
+library(DESeq2)
+library(clusterProfiler)
+library(msigdbr)
+
+packageVersion("tidyverse")
+packageVersion("ggplot2")
+packageVersion("DESeq2")
+packageVersion("clusterProfiler")
+packageVersion("msigdbr")
+```
+
+# Cargar datos
+```{r data_load}
+rna <- read.table(file="../input/coad_rna.tsv", sep="\t", header=TRUE, check.names = FALSE, row.names = 1)
+metadata <- read.table(file="../input/coad_metadata.tsv", sep="\t", header = TRUE)
+
+head(metadata)
+dim(rna)
+```
+
+# Extraer el dato a comparar
+```{r generate-coldata}
+# El modelo DESeq2 necesita una colData que tenga en las filas las muestras, y la columna con el valor del diseño
+
+coldata <- metadata %>% select(PATIENT_ID, wholeGenomeDuplication) %>% 
+  column_to_rownames(var = "PATIENT_ID") %>%
+  mutate(wholeGenomeDuplication = as.factor(wholeGenomeDuplication))
+
+table(coldata)
+```
+
+```{r filter-matrix}
+# eliminar genes sin expresion
+table(rowSums(rna) > 0) # TRUE genes con expresion, FALSE genes donde en todas las muestras son 0
+rna <- rna[rowSums(rna) > 0, ]
+dim(rna)
+```
+
+# Correr análisis de expresión
+```{r deseq-matrix}
+dds <- DESeqDataSetFromMatrix(countData = rna,
+                              colData = coldata,
+                              design = ~wholeGenomeDuplication)
+
+dds <- DESeq(dds)
+resultsNames(dds)
+```
+
+```{r observar-resultados}
+res <- results(dds, name = "wholeGenomeDuplication_true_vs_false") %>% as.data.frame()
+summary(res)
+```
+
+```{r deg-genes}
+# log2FC > 0 - enriquecido en true, < 0 enriquecido en false
+# Un log2FC de 1 indica un cambio de dos veces. Es decir, si es 1 entonces en esa condicion esta expresado dos veces mas.
+true_enriched <- res %>% filter(log2FoldChange > 1, padj < 0.1)
+false_enriched <- res %>% filter(log2FoldChange < -1, padj < 0.1)
+
+cat("Hay", nrow(true_enriched), "genes sobreexpresados en duplicacion de genoma completo, versus", nrow(false_enriched), "subexpresados.")
+```
+
+# Volcanoplot
+```{r volcano}
+# Definir colores
+res <- res %>% 
+  mutate(gene = rownames(res),
+         significant = ifelse(gene %in% rownames(true_enriched), "WGD",
+                              ifelse(gene %in% rownames(false_enriched), 
+                                     "noWGD", 
+                                     "not significant")))
+
+# generar volcano
+ggplot(res, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("WGD" = "red",
+                                "noWGD" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic()
+```
+```{r functional enrich}
+# Definir una base de datos. Por ejemplo = GO procesos biológicos
+go_bp <- msigdbr(species = "Homo sapiens",
+                 collection = "C5", 
+                 subcollection = "GO:BP")
+
+# El universo de genes a estudiar debe ser los genes utilizados en la prueba
+universo <- res$gene
+
+# Se establece una tabla de asociacion proceso-gen
+term2gene <- unique(as.data.frame(go_bp[, c("gs_name", "ensembl_gene")]))
+```
+
+```{r compareCluster}
+# lista de genes con grupo
+genes <- list("WGD" = res$gene[res$significant == "WGD"],
+              "noWGD" = res$gene[res$significant == "noWGD"])
+
+enrich <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.1,
+                         minGSSize = 3)
+```
+```{r visualizar, fig.width=10, fig.height=10}
+dotplot(enrich, showCategory = 10, 
+        color = "p.adjust")
+```
+# Alternativa: un enriquecimiento por categoria
+```{r per-gene-set}
+wgd_enrich <- enricher(gene = genes$WGD, TERM2GENE = term2gene, 
+                       universe = universo, pAdjustMethod = "BH",
+                       pvalueCutoff = 0.1, minGSSize = 3) 
+dotplot(wgd_enrich, showCategory = 10, 
+        color = "p.adjust")
+
+nowgd_enrich <- enricher(gene = genes$noWGD, TERM2GENE = term2gene, 
+                       universe = universo, pAdjustMethod = "BH",
+                       pvalueCutoff = 0.1, minGSSize = 3)
+dotplot(nowgd_enrich, showCategory = 10, 
+        color = "p.adjust")
+```
+
+# Parte 2: pureza como covariable
+```{r}
+coldata <- metadata %>% select(PATIENT_ID, wholeGenomeDuplication, purity) %>% 
+  column_to_rownames(var = "PATIENT_ID") %>%
+  mutate(wholeGenomeDuplication = as.factor(wholeGenomeDuplication))
+
+dds <- DESeqDataSetFromMatrix(countData = rna,
+                              colData = coldata,
+                              design = ~wholeGenomeDuplication + purity)
+
+dds <- DESeq(dds)
+resultsNames(dds)
+```
+```{r purity_add, fig.width=10, fig.height=4}
+res_2 <- results(dds, name = "wholeGenomeDuplication_true_vs_false") %>% as.data.frame()
+summary(res_2)
+
+true_enriched <- res_2 %>% filter(log2FoldChange > 1, padj < 0.1)
+false_enriched <- res_2 %>% filter(log2FoldChange < -1, padj < 0.1)
+
+cat("Hay", nrow(true_enriched), "genes sobreexpresados en duplicacion de genoma completo, versus", nrow(false_enriched), "subexpresados.")
+
+res_2 <- res_2 %>% 
+  mutate(gene = rownames(res_2),
+         significant = ifelse(gene %in% rownames(true_enriched), "WGD",
+                              ifelse(gene %in% rownames(false_enriched), 
+                                     "noWGD", 
+                                     "not significant")))
+
+# generar volcano
+ggplot(res_2, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("WGD" = "red",
+                                "noWGD" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic()
+universo <- res_2$gene
+
+genes <- list("WGD" = res_2$gene[res_2$significant == "WGD"],
+              "noWGD" = res_2$gene[res_2$significant == "noWGD"])
+
+enrich_2 <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.1,
+                         minGSSize = 3)
+
+dotplot(enrich_2, showCategory = 10, 
+        color = "p.adjust")
+```
+```{r, fig.width=20, fig.height=10}
+res_purity <- results(dds, name = "purity") %>% as.data.frame()
+res_purity <- res_purity %>% 
+  mutate(gene = rownames(res_purity),
+         significant = ifelse((log2FoldChange > 1 & padj < 0.1), "purity_high",
+                              ifelse((log2FoldChange < -1 & padj < 0.1), "purity_low", "not significant")))
+table(res_purity$significant)
+universo <- res_purity$gene
+genes <- list("purity_high" = res_purity$gene[res_purity$significant == "purity_high"],
+              "purity_low" = res_purity$gene[res_purity$significant == "purity_low"])
+
+enrich_purity <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.1,
+                         minGSSize = 3)
+
+ggplot(res_purity, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("purity_high" = "red",
+                                "purity_low" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic() +
+dotplot(enrich_purity, showCategory = 10, 
+        color = "p.adjust") + 
+ggplot(coldata, aes(x=wholeGenomeDuplication, y = purity, 
+                    color = wholeGenomeDuplication)) +
+  geom_boxplot() + theme_minimal()
+```
+
+# Repetir análisis: sexo 
+
+```{r run_normal, fig.width=20, fig.height=10}
+coldata <- metadata %>% dplyr::select(PATIENT_ID, SEX, purity, AGE) %>% 
+  column_to_rownames(var = "PATIENT_ID") %>%
+  mutate(SEX = as.factor(SEX))
+
+# eliminar muestras con SEX = NA
+coldata <- coldata %>%
+  filter(!is.na(SEX))
+
+# dejar en rna solo las muestras restantes
+rna <- rna[, rownames(coldata)]
+
+dds_sex <- DESeqDataSetFromMatrix(countData = rna,
+                                  colData = coldata,
+                                  design = ~SEX + purity + AGE)
+
+dds_sex <- DESeq(dds_sex)
+resultsNames(dds_sex)
+
+res_sex <- results(dds_sex, name = "SEX_Male_vs_Female") %>% as.data.frame()
+summary(res_sex)
+
+res_sex <- res_sex %>% 
+   mutate(gene = rownames(res_sex),
+         significant = ifelse((log2FoldChange > 1 & padj < 0.1), "Male",
+                              ifelse((log2FoldChange < -1 & padj < 0.1), "Female", "not significant")))
+
+
+universo <- res_sex$gene
+genes <- list("Female" = res_sex$gene[res_sex$significant == "Female"],
+              "Male" = res_sex$gene[res_sex$significant == "Male"])
+
+enrich_sex <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.1,
+                         minGSSize = 3) 
+
+ggplot(res_sex, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("Female" = "red",
+                                "Male" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic() +
+  dotplot(enrich_sex, showCategory = 10, 
+        color = "p.adjust")
+```
+
+# BRCA
+## Paso 1: Cargar los datos
+```{r brca-load}
+brca_rna <- read.table(file="../input/brca_subset_chr1_22.tsv", sep="\t", header=TRUE, check.names = FALSE, row.names = 1)
+metadata_brca <- read.table(file="../input/brca_metadata.tsv", sep="\t", header = TRUE) %>% column_to_rownames(var = "X")
+```
+
+## Paso 2: Preparar la matriz para PCA normalizando con vst y seleccionando los 5000 más variables
+```{r brca-vst}
+# vst
+dds <- DESeqDataSetFromMatrix(
+  countData = round(brca_rna),
+  colData = metadata_brca,
+  design = ~ 1)
+vsd <- vst(dds, blind = TRUE)
+brca_rna_vst <- assay(vsd)
+
+# var
+gene_var <- apply(brca_rna_vst, 1, var)
+top5000 <- names(sort(gene_var, decreasing = TRUE))[1:5000]
+brca_rna_vst_5000 <- brca_rna_vst[top5000, ]
+```
+
+## Paso 3: PCA 
+```{r brca-pca}
+# PCA
+pca_brca <- prcomp(t(brca_rna_vst_5000))
+# varianza explicada
+var_exp <- (pca_brca$sdev^2 / sum(pca_brca$sdev^2)) * 100
+var_exp[1:10]
+
+# pc1 vs pc2
+pca_df <- as.data.frame(pca_brca$x)
+pca_df$er_status <- metadata_brca[rownames(pca_df), "er_status"]
+
+ggplot(pca_df, aes(x = PC1, y = PC2, color = er_status)) +
+  geom_point(size = 2, alpha = 0.8) +
+  theme_classic() +
+  labs(x = paste0("PC1 (", round(var_exp[1], 1), "%)"), 
+       y = paste0("PC2 (", round(var_exp[2], 1), "%)"),
+       color = "ER status")
+```
+
+## Paso 4: Clustering jerárquico
+```{r brca-hc}
+hc <- hclust(dist(pca_brca$x[, c("PC1", "PC2")]),
+             method = "ward.D2")
+cluster <- cutree(hc, k = 2)
+
+metadata_brca$cluster <- factor(cluster[rownames(metadata_brca)])
+
+pca_df$cluster <- metadata_brca[rownames(pca_df), "cluster"]
+ggplot(pca_df, aes(PC1, PC2, color = cluster)) +
+  geom_point(size = 2, alpha = 0.8) +
+  theme_classic() +
+  labs(x = paste0("PC1 (", round(var_exp[1], 1), "%)"),
+       y = paste0("PC2 (", round(var_exp[2], 1), "%)"),
+       color = "Cluster")
+```
+```{r brca-cluster-corr}
+fisher_vars <- c("sex", "vital_status", "is_ffpe", "pr_status", "er_status")
+wilcox_vars <- c("age_at_diagnosis", "days_to_death")
+
+fisher_res <- sapply(fisher_vars, \(v)
+  fisher.test(table(metadata_brca$cluster, metadata_brca[[v]]))$p.value)
+
+wilcox_res <- sapply(wilcox_vars, \(v)
+  wilcox.test(metadata_brca[[v]] ~ metadata_brca$cluster)$p.value)
+
+results <- data.frame(
+  variable = c(fisher_vars, wilcox_vars),
+  p_value = c(fisher_res, wilcox_res)) %>%
+  mutate(FDR = p.adjust(p_value, method = "BH"),
+         significant = FDR < 0.05)
+results
+```
+
+## Paso 5: Análisis de expresión diferencial
+```{r brca-deseq, fig.width=6, fig.height=3}
+coldata <- metadata_brca %>% select(cluster)
+brca_rna_deseq <- brca_rna[, rownames(coldata)] # sin vst
+
+dds_brca <- DESeqDataSetFromMatrix(countData = brca_rna_deseq,
+                                  colData = coldata,
+                                  design = ~cluster)
+
+dds_brca <- DESeq(dds_brca)
+resultsNames(dds_brca)
+
+res_brca <- results(dds_brca, name = "cluster_2_vs_1") %>% as.data.frame()
+summary(res_brca)
+
+res_brca <- res_brca %>% 
+   mutate(gene = rownames(res_brca),
+         significant = ifelse((log2FoldChange > 2 & padj < 0.05), "2",
+                              ifelse((log2FoldChange < -2 & padj < 0.05), "1", "not significant")))
+
+ggplot(res_brca, aes(x = log2FoldChange, y = -log10(padj), 
+                color = significant)) +
+  geom_point(alpha = 0.75, size = 2) +
+  scale_color_manual(values = c("1" = "red",
+                                "2" = "blue",
+                                "not significant" = "lightgray")) +
+  theme_classic()
+```
+
+## Paso 6: Enriquecimiento funcional
+```{r brca-ora, fig.width=15, fig.height=6}
+universo <- res_brca$gene
+universo <- sub("\\..*$", "", res_brca$gene)
+genes <- list("2" = res_brca$gene[res_brca$significant == "2"],
+              "1" = res_brca$gene[res_brca$significant == "1"])
+genes <- lapply(genes, function(x) sub("\\..*$", "", x))
+
+enrich_brca <- compareCluster(geneClusters = genes,
+                         fun = "enricher",
+                         TERM2GENE = term2gene,
+                         universe = universo,
+                         pAdjustMethod = "BH",
+                         pvalueCutoff = 0.05,
+                         minGSSize = 3) 
+
+dotplot(enrich_brca, showCategory = 10, 
+        color = "p.adjust")
+```
+
+El cluster 1 se enriquece en pacientes con ER y PR positivos, que a su vez se enriquece cen procesos hormonales, señalización y transporte de membrana; observable en tipos luminales caracterizados por la presencia de estos receptores. Por otro lado, el cluster 2 se relaciona con programas de diferenciación epitelial como keratinización, desarrollo de epidermis, y procesos de respuesta inmune; considerando la relación con recepores hormonales del cluster 1 este coincide con un perfil no luminal. 
+
+## Paso extra: enriquecimiento de los componentes principales, ¿qué captura cada componente?
+```{r brca-pc, fig.width=15, fig.height=6}
+loadings <- as.data.frame(pca_brca$rotation[, c("PC1", "PC2")])
+loadings$gene <- sub("\\..*$", "", rownames(loadings))
+
+n_top <- ceiling(nrow(loadings) * 0.05) # 5% con mayor y menor peso
+
+genes_pc <- list(
+  "PC1+" = loadings$gene[order(loadings$PC1, decreasing = TRUE)][1:n_top],
+  "PC1-" = loadings$gene[order(loadings$PC1)][1:n_top],
+  "PC2+" = loadings$gene[order(loadings$PC2, decreasing = TRUE)][1:n_top],
+  "PC2-" = loadings$gene[order(loadings$PC2)][1:n_top])
+
+universo <- unique(loadings$gene)
+enrich_pc <- compareCluster(
+  geneClusters = genes_pc,
+  fun = "enricher",
+  TERM2GENE = term2gene,
+  universe = universo,
+  pAdjustMethod = "BH",
+  pvalueCutoff = 0.05,
+  minGSSize = 3
+)
+
+dotplot(enrich_pc,
+        showCategory = 5,
+        color = "p.adjust")
+```
+
+El componente 1 captura principalmente procesos relacionados con respuesta inmune y remodelación de la matriz. Esto significa que las muestras con mayor PC1 (cluster 2) presentan perfiles de expresión mayores de estos procesos. A su vez, el componente 2 positivo se relaciona con respuesta inmune y, negativamente, con procesos de división celular. Esto podría generar un análisis de subtipos dentro de los cluster. Por lo tanto, los componentes logran capturar diversos patrones que separan a las muestras en los cluster descritos. 
+
+```{r}
+sessionInfo()
+```
+

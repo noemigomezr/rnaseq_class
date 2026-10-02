@@ -15,19 +15,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # install.packages("tidyverse")
 # install.packages("ggplot2")
-# BiocManager::install("DESeq2")
+# BiocManager::install("edgeR")
 # BiocManager::install("clusterProfiler")
 # BiocManager::install("msigdbr")
 
 library(tidyverse)
 library(ggplot2)
-library(DESeq2)
+library(edgeR)
 library(clusterProfiler)
 library(msigdbr)
 
 packageVersion("tidyverse")
 packageVersion("ggplot2")
-packageVersion("DESeq2")
+packageVersion("edgeR")
 packageVersion("clusterProfiler")
 packageVersion("msigdbr")
 ```
@@ -43,7 +43,7 @@ dim(rna)
 
 # Extraer el dato a comparar
 ```{r generate-coldata}
-# El modelo DESeq2 necesita una colData que tenga en las filas las muestras, y la columna con el valor del diseño
+# El modelo edgeR necesita una colData que tenga en las filas las muestras, y la columna con el valor del diseño
 
 coldata <- metadata %>% select(PATIENT_ID, wholeGenomeDuplication) %>% 
   column_to_rownames(var = "PATIENT_ID") %>%
@@ -60,17 +60,28 @@ dim(rna)
 ```
 
 # Correr análisis de expresión
-```{r deseq-matrix}
-dds <- DESeqDataSetFromMatrix(countData = rna,
-                              colData = coldata,
-                              design = ~wholeGenomeDuplication)
+```{r edger-matrix}
+# Alinear las muestras y usar false como referencia: el contraste sera true vs false
+stopifnot(setequal(colnames(rna), rownames(coldata)))
+coldata <- coldata[colnames(rna), , drop = FALSE]
+coldata$wholeGenomeDuplication <- relevel(coldata$wholeGenomeDuplication, ref = "false")
+design <- model.matrix(~wholeGenomeDuplication, data = coldata)
 
-dds <- DESeq(dds)
-resultsNames(dds)
+dge <- DGEList(counts = rna)
+# Filtrar genes con expresion insuficiente para el diseño y normalizar por TMM
+keep <- filterByExpr(dge, design = design)
+dge <- dge[keep, , keep.lib.sizes = FALSE]
+dge <- calcNormFactors(dge, method = "TMM")
+
+dge <- estimateDisp(dge, design)
+fit <- glmQLFit(dge, design)
+qlf <- glmQLFTest(fit, coef = "wholeGenomeDuplicationtrue")
+colnames(design)
 ```
 
 ```{r observar-resultados}
-res <- results(dds, name = "wholeGenomeDuplication_true_vs_false") %>% as.data.frame()
+res <- topTags(qlf, n = Inf, sort.by = "none")$table %>%
+  rename(log2FoldChange = logFC, padj = FDR)
 summary(res)
 ```
 
@@ -108,41 +119,42 @@ go_bp <- msigdbr(species = "Homo sapiens",
                  collection = "C5", 
                  subcollection = "GO:BP")
 
-# El universo de genes a estudiar debe ser los genes utilizados en la prueba
-universo <- res$gene
+# GSEA utiliza todos los genes evaluados, sin filtrar por log2FC o padj.
+# La raiz del estadistico F con el signo del log2FC ordena true vs false.
+gene_list <- setNames(sign(res$log2FoldChange) * sqrt(res$F), res$gene)
+gene_list <- sort(gene_list[is.finite(gene_list)], decreasing = TRUE)
 
 # Se establece una tabla de asociacion proceso-gen
 term2gene <- unique(as.data.frame(go_bp[, c("gs_name", "ensembl_gene")]))
 ```
 
-```{r compareCluster}
-# lista de genes con grupo
-genes <- list("WGD" = res$gene[res$significant == "WGD"],
-              "noWGD" = res$gene[res$significant == "noWGD"])
-
-enrich <- compareCluster(geneClusters = genes,
-                         fun = "enricher",
-                         TERM2GENE = term2gene,
-                         universe = universo,
-                         pAdjustMethod = "BH",
-                         pvalueCutoff = 0.1,
-                         minGSSize = 3)
+```{r gsea}
+# NES > 0: enriquecido en WGD; NES < 0: enriquecido en noWGD
+set.seed(123)
+enrich <- GSEA(geneList = gene_list,
+               TERM2GENE = term2gene,
+               pAdjustMethod = "BH",
+               pvalueCutoff = 0.1,
+               minGSSize = 3,
+               eps = 0,
+               nPermSimple = 10000,
+               seed = TRUE,
+               by = "fgsea",
+               BPPARAM = BiocParallel::SerialParam())
 ```
 ```{r visualizar, fig.width=10, fig.height=10}
 dotplot(enrich, showCategory = 10, 
         color = "p.adjust")
 ```
-# Alternativa: un enriquecimiento por categoria
+# Alternativa: visualizar el enriquecimiento por categoria (segun el signo del NES)
 ```{r per-gene-set}
-wgd_enrich <- enricher(gene = genes$WGD, TERM2GENE = term2gene, 
-                       universe = universo, pAdjustMethod = "BH",
-                       pvalueCutoff = 0.1, minGSSize = 3) 
+wgd_enrich <- enrich
+wgd_enrich@result <- enrich@result[enrich@result$NES > 0, , drop = FALSE]
 dotplot(wgd_enrich, showCategory = 10, 
         color = "p.adjust")
 
-nowgd_enrich <- enricher(gene = genes$noWGD, TERM2GENE = term2gene, 
-                       universe = universo, pAdjustMethod = "BH",
-                       pvalueCutoff = 0.1, minGSSize = 3)
+nowgd_enrich <- enrich
+nowgd_enrich@result <- enrich@result[enrich@result$NES < 0, , drop = FALSE]
 dotplot(nowgd_enrich, showCategory = 10, 
         color = "p.adjust")
 ```
