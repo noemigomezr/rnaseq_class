@@ -1,0 +1,69 @@
+---
+title: "Class"
+author: "Noemí Gómez"
+date: "2026-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Librerías
+```{r library}
+# install.packages("BiocManager")
+
+# install.packages("tidyverse")
+# install.packages("ggplot2")
+# BiocManager::install("DESeq2")
+# BiocManager::install("clusterProfiler")
+# BiocManager::install("msigdbr")
+
+library(tidyverse)
+library(ggplot2)
+library(DESeq2)
+library(clusterProfiler)
+library(msigdbr)
+```
+
+# Cargar datos
+```{r}
+rna <- read.table(file = "../input/coad_rna.tsv", sep = "\t", header = TRUE, check.names = FALSE, row.names = 1)
+metadata <- read.table(file = "../input/coad_metadata.tsv", sep = "\t", header = TRUE, check.names = FALSE)
+```
+
+# Extraer el dato a comparar
+```{r}
+coldata <- metadata %>% select(PATIENT_ID, wholeGenomeDuplication) %>%
+  column_to_rownames(var = "PATIENT_ID") %>%
+  mutate(wholeGenomeDuplication = as.factor(wholeGenomeDuplication))
+table(coldata)
+```
+
+```{r}
+table(rowSums(rna) > 0)
+rna <- rna[rowSums(rna) > 0, ]
+dim(rna)
+```
+
+# Correr análisis de expresión
+```{r}
+dds <- DESeqDataSetFromMatrix(countData = rna,
+                              colData = coldata, 
+                              design = ~wholeGenomeDuplication)
+dds <- DESeq(dds)
+resultsNames(dds)
+```
+
+```{r}
+res <- results(dds, name = "wholeGenomeDuplication_true_vs_false") %>% as.data.frame()
+summary(res)
+```
+
+# Volcano plot
+```{r}
+true_enriched <- res %>% filter(log2FoldChange > 2, padj < 0.1)
+```
+
+
+# Enriquecimiento funcional
