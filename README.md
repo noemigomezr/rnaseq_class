@@ -4,7 +4,7 @@ Repositorio de la clase de RNA-seq para el Magíster en Informática Médica, a 
 
 ## Organización del repositorio
 
-- **`clase/`**: contiene la presentación en PowerPoint (PPT) de la clase realizada.
+- **`clase/`**: contiene la presentación de la clase realizada.
 - **`practico/`**: reúne los materiales para las actividades prácticas:
   - **`script/`**: contiene los documentos R Markdown (`.Rmd`) utilizados en las actividades prácticas de análisis de RNA-seq.
   - **`input/`**: contiene los archivos de entrada necesarios para completar las actividades.
